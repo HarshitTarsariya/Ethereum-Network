@@ -13,7 +13,7 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       this.accounts = await this.web3.eth.getAccounts();
-
+      console.log(this.accounts);
       // Get the contract instance.
       this.networkId = await this.web3.eth.net.getId();
       
@@ -47,7 +47,7 @@ class App extends Component {
   };
   handleSubmit=async ()=>{
     const {price,identifier}=this.state;
-    let result=await this.itemManager.methods.createItem(identifier,price).send({from:this.accounts[0]});
+    let result=await this.itemManager.methods.createItem(identifier,price).send({from:this.accounts[1]});
     console.log(result);
     alert("Send "+price+" Wei to "+result.events.SupplyChainStep.returnValues._address);
   }
